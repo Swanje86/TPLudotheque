@@ -20,7 +20,7 @@ public class AdresseRepositoryTest {
     public void testCreationAdresse() {
         // Arrange
         long nbAdresse = adresseRepo.count();
-        Adresse adresse = new Adresse("Rue Test", "79000", "TEST");
+        Adresse adresse = new Adresse("rue de Konoha", "79000", "KONOHA");
 
         // Act
         adresseRepo.save(adresse);

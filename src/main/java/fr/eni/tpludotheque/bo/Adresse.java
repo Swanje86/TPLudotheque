@@ -28,8 +28,11 @@ public class Adresse {
     @Column(nullable = false, length = 50)
     private String ville;
 
-    @OneToOne
-    @JoinColumn (name = "no_client", nullable = false)
+    @OneToOne(mappedBy = "noAdresse")
+    //@JoinColumn (name = "no_client", nullable = false)
     private Client noClient;
 
+
+    public void setClient(Client client) {
+    }
 }

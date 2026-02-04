@@ -31,9 +31,10 @@ public class Client {
     @Column(nullable = true, length = 10)
     private String noTelephone;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "no_adresse", nullable = false)
     private Adresse noAdresse;
+
 
 
 }
