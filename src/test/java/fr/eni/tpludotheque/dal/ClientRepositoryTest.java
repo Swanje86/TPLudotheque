@@ -2,6 +2,7 @@ package fr.eni.tpludotheque.dal;
 
 import fr.eni.tpludotheque.bo.Adresse;
 import fr.eni.tpludotheque.bo.Client;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,29 +15,27 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class ClientRepositoryTest {
 
     @Autowired
-    private ClientRepository clientRepo;
+    private ClientRepository clientRepository;
 
     @Test
-    @DisplayName("Test de création d'un client avec une adresse")
+    @DisplayName("test positif de creation d'un client en BD")
+    @Transactional
     public void testCreationClient() {
         // Arrange
-        long nbClient = clientRepo.count();
         Adresse adresse = new Adresse("rue de Konoha", "79000","KONOHA");
+        Client client = new Client("UZUMAKI", "Naruto", "nuzumaki@mail.fr",adresse);
 
 
-        Client client = new Client("UZUMAKI", "Naruto", "nuzumaki@mail.fr");
-        client.setNoAdresse(adresse);
+        //Act
+        Client clientBD = clientRepository.save(client);
 
-        // important pour la relation bidirectionnelle
-        adresse.setClient(client);
-
-
-        // Act
-        clientRepo.save(client);
-
-        // Assert
-        assertNotNull(client.getNoClient());
-        assertNotNull(client.getNoAdresse());
-        assertEquals(nbClient + 1, clientRepo.count());
+        //Assert
+        assertNotNull(clientBD);
+        assertNotNull(clientBD.getNoClient());
+        assertEquals("UZUMAKI", clientBD.getNom());
+        assertEquals("Naruto", clientBD.getPrenom());
+        assertEquals("nuzumaki@mail.fr", clientBD.getEmail());
+        assertNotNull(clientBD.getAdresse().getNoAdresse());
+        assertEquals(adresse, clientBD.getAdresse());
     }
 }

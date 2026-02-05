@@ -17,7 +17,7 @@ public class Adresse {
     private Integer noAdresse;
 
     @NonNull
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 100)
     private String rue;
 
     @NonNull
@@ -25,14 +25,7 @@ public class Adresse {
     private String codePostal;
 
     @NonNull
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 100)
     private String ville;
 
-    @OneToOne(mappedBy = "noAdresse")
-    //@JoinColumn (name = "no_client", nullable = false)
-    private Client noClient;
-
-
-    public void setClient(Client client) {
-    }
 }

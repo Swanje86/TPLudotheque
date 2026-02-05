@@ -10,6 +10,7 @@ import lombok.*;
 @EqualsAndHashCode
 @ToString
 @Entity
+@Table(name="CLIENTS")
 public class Client {
 
     @Id
@@ -25,16 +26,18 @@ public class Client {
     private String prenom;
 
     @NonNull
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, unique=true)
     private String email;
 
-    @Column(nullable = true, length = 10)
+    @Column(length = 10)
     private String noTelephone;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    @NonNull
+    @OneToOne(cascade = CascadeType.ALL,
+            orphanRemoval = true,optional = false,
+            fetch=FetchType.EAGER)
     @JoinColumn(name = "no_adresse", nullable = false)
-    private Adresse noAdresse;
+    private Adresse adresse;
 
 
-
-}
+    }
