@@ -1,11 +1,15 @@
 package fr.eni.tpludotheque.bll;
 
-import fr.eni.tpludotheque.bo.Adresse;
 import fr.eni.tpludotheque.bo.Client;
-import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 public interface ClientService {
 
-    void ajouterClient (Client client);
+    //S2008 - Couche BLL : ajouter un client et son adresse
+    public Client ajouterClient (Client client);
+
+    //S2009 - Couche BLL : trouver les clients dont le nom commence par la chaine fournie
+    public List<Client> trouverClientCommencantPar(String Nom);
 }
