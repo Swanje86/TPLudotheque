@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClientDTO {
+    //permet de faire transiter les infos, pas format objet voir DTO Data Transfer Object (equivalent DataPage en PEGA)
     private String nom;
     private String prenom;
     private String email;
